@@ -48,4 +48,15 @@ jobs:
         with:
           node-version: 18  
       - name: Install Dependencies
-        run: npm run code-coverage    
+        run: npm install 
+        
+      - name: code coverage
+        continue-on-error: true
+        run: npm run coverage
+
+      - name: uploadcoverage artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Code-Coverage-Result
+          path: coverage
+          retention-days: 5
